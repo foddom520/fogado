@@ -1,16 +1,17 @@
 const express = require("express");
 const mysql = require('mysql2');
 const app = express();
-import 
-
-const PORT = process.env.PORT || 3000
+const PORT = 3000;
+require('dotenv').config();
 
 const db = mysql.createConnection({
-    host:process.env.host || 'localhost',
-    user: process.env.user || 'root',
-    password: process.env.password || '',
-    database: process.env.database || 'fogado'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
 });
+
 
 db.connect(err => {
     if (err) throw err;
@@ -28,7 +29,7 @@ app.get('/szobak', (req, res) => {
     });
 });
 
-app.get('/fogalalsok', (req, res) => {
+app.get('/ejszakak', (req, res) => {
     const sql = 'SELECT SUM(foglalasok.fo) AS vendegek FROM foglalasok;';
     db.query(sql, (err, results) => {
         if (err) {
