@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f6f2;
+  color: #333;
+  line-height: 1.6;
+}
+
+.header {
+  width: 100%;
+  overflow: hidden;
+}
+
+.header img.top {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 60px;
+}
+
+.top-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 25px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.section-box {
+  background-color: #e6e0c8;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-box h3 {
+  color: #2d4a26;
+  border-bottom: 2px solid #c3b67b;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.section-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+a {
+  color: #385c34;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+}
+
+th {
+  background-color: #e8e3cf;
+  color: #2f3e23;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f8f5;
+}
+
+tr:hover {
+  background-color: #f2f2e9;
+}
+
+.bottom-section {
+  width: 100%;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+}
+
+button {
+  background-color: #a4b48f;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #8fa67c;
+}
+
+select {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 1024px) {
+  .top-sections {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-sections {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding: 20px;
+  }
+}
+
+.logo-img {
+  width: 80px !important;
+  height: auto !important;
+  display: block;
+  margin-top: 8px;
+}

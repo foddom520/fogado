@@ -20,41 +20,27 @@ db.connect(err => {
     console.log('connected');
 })
 
-app.get('/szobak', (req, res) => {
-    const sql = 'SELECT szobak.sznev, agy, potagy FROM szobak;';
-    db.query(sql, (err, results) => {
-        if (err) {
-            console.error("sql error:", err);
-            return res.status(500).send('database error');
-        }
-        res.json(results);
-    });
-});
-
-app.get('/ejszakak', (req, res) => {
-    const sql = 'SELECT SUM(foglalasok.fo) AS vendegek FROM foglalasok;';
-    db.query(sql, (err, results) => {
-        if (err) {
-            console.error("sql error:", err);
-            return res.status(500).send('database error');
-        }
-        res.json(results);
-    });
-});
-
-app.get('/foglalasok', (req, res) => {
-    const sql = 'SELECT DATEDIFF(foglalasok.tav, foglalasok.erk) as vendegejszakak FROM foglalasok;';
-    db.query(sql, (err, results) => {
-        if (err) {
-            console.error("sql error:", err);
-            return res.status(500).send('database error');
-        }
-        res.json(results);
-    });
-});
-
 app.get('/foglalasok-reszletek', (req, res) => {
     const sql = 'SELECT vendegek.vnev, foglalasok.szoba, foglalasok.erk, foglalasok.tav FROM foglalasok AS foglalasok JOIN vendegek AS vendegek ON foglalasok.vendeg = vendegek.vsorsz;';
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error("sql error:", err);
+            return res.status(500).send('database error');
+        }
+        res.json(results);
+    });
+});
+
+app.get('/kihasznaltsag', (req, res) => {
+    const sql = `
+        SELECT 
+            szoba,
+            COUNT(szoba) AS foglalasok_szama,
+            SUM(DATEDIFF(tav, erk)) AS osszes_ejszaka
+        FROM foglalasok 
+        GROUP BY szoba
+    `;
+    
     db.query(sql, (err, results) => {
         if (err) {
             console.error("sql error:", err);

@@ -12,8 +12,7 @@ function HetTorpe() {
                 setRooms(data);
                 const total = data.reduce((sum, room) => {
                     const mainBeds = room.agy || 0;
-                    const extraBeds = room.potagy || 0;
-                    return sum + mainBeds + extraBeds;
+                    return sum + mainBeds;
                 }, 0);
                 setTotalBeds(total);
             })
@@ -28,8 +27,6 @@ function HetTorpe() {
                     <tr style={{ backgroundColor: '#f2f2f2' }}>
                         <th style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'left' }}>Szoba neve</th>
                         <th style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'left' }}>Ágyak Száma</th>
-                        <th style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'left' }}>Pótágyak</th>
-                        <th style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'left' }}>Összes ágy</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,10 +34,6 @@ function HetTorpe() {
                         <tr key={index} style={{ border: '1px solid #ddd' }}>
                             <td style={{ border: '1px solid #ddd', padding: '12px' }}>{room.sznev}</td>
                             <td style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'center' }}>{room.agy}</td>
-                            <td style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'center' }}>{room.potagy || 0}</td>
-                            <td style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'center' }}>
-                                {(room.agy || 0) + (room.potagy || 0)}
-                            </td>
                         </tr>
                     ))}
                 </tbody>
