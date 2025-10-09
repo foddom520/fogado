@@ -1,8 +1,11 @@
 const express = require("express");
 const mysql = require('mysql2');
+const cors = require('cors');
 const app = express();
 const PORT = 3000;
 require('dotenv').config();
+
+app.use(cors());
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -11,7 +14,6 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME,
     port: process.env.DB_PORT
 });
-
 
 db.connect(err => {
     if (err) throw err;
@@ -40,7 +42,7 @@ app.get('/ejszakak', (req, res) => {
     });
 });
 
-app.get('/fogalalsok', (req, res) => {
+app.get('/foglalasok', (req, res) => {
     const sql = 'SELECT DATEDIFF(foglalasok.tav, foglalasok.erk) as vendegejszakak FROM foglalasok;';
     db.query(sql, (err, results) => {
         if (err) {
@@ -51,7 +53,7 @@ app.get('/fogalalsok', (req, res) => {
     });
 });
 
-app.get('/fogalalsok', (req, res) => {
+app.get('/foglalasok-reszletek', (req, res) => {
     const sql = 'SELECT vendegek.vnev, foglalasok.szoba, foglalasok.erk, foglalasok.tav FROM foglalasok AS foglalasok JOIN vendegek AS vendegek ON foglalasok.vendeg = vendegek.vsorsz;';
     db.query(sql, (err, results) => {
         if (err) {
